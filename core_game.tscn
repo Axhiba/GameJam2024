@@ -111,7 +111,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"new_animation",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [node name="CoreGame" type="Node2D"]
@@ -120,4 +120,8 @@ animations = [{
 position = Vector2(205, 205)
 sprite_frames = SubResource("SpriteFrames_0emvj")
 animation = &"new_animation"
+autoplay = "new_animation"
 speed_scale = 4.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 326)
