@@ -139,5 +139,3 @@ script = ExtResource("3_lnrw4")
 
 [node name="Fighter2" type="Marker2D" parent="TurnQueue"]
 script = ExtResource("3_lnrw4")
-
-[node name="Node2D" type="Node2D" parent="TurnQueue"]
