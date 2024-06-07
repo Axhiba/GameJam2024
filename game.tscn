@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs7uptugn7j02"]
+
+[ext_resource type="Texture2D" uid="uid://dersi2auk8gr5" path="res://resources/player_battle.png" id="1_6480g"]
+[ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
+[ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_bknwt"]
+
+[node name="Game" type="Node"]
+
+[node name="Battle" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="Battle"]
+
+[node name="Character" type="Node2D" parent="Battle/Player"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Character"]
+z_index = 1
+position = Vector2(48, 50)
+scale = Vector2(0.75, 0.78125)
+texture = ExtResource("1_6480g")
+
+[node name="Enemy" type="Node2D" parent="Battle"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Enemy"]
+position = Vector2(46, 46)
+scale = Vector2(0.695313, 0.695313)
+texture = ExtResource("2_bknwt")
+
+[node name="Background" type="TextureRect" parent="Battle"]
+z_index = -5
+offset_right = 1155.0
+offset_bottom = 647.0
+texture = ExtResource("1_wbcd5")
+expand_mode = 1
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 47.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 424.0
+offset_right = 220.0
+offset_bottom = 581.0
+
+[node name="AttackButton" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Attack"
