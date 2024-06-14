@@ -1,18 +1,18 @@
-class_name DollProjectile
-extends RigidBody2D
+extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	
-	var velocity = Vector2(300, -100)
-	linear_velocity = velocity
-	
-	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+#
+#func _on_ThrowArea_input_event(viewport, event, shape_idx):
+	#
+	#if event is InputEventMouseButton: 
+		#print(event)
+	#pass # Replace with function body.
