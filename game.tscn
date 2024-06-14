@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs7uptugn7j02"]
+
+[ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
+[ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
+[ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
+[ext_resource type="PackedScene" uid="uid://d4bqc4nkpel1f" path="res://doll_projectile.tscn" id="2_0bd56"]
+[ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_bknwt"]
+[ext_resource type="Texture2D" uid="uid://c85rvnn5fa10o" path="res://resources/MarisaPlaceholder.png" id="2_o2t83"]
+[ext_resource type="Script" path="res://ThrowArea.gd" id="4_vclho"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dh1d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6a6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
+size = Vector2(866, 20)
+
+[node name="Game" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 326)
+
+[node name="Battle" type="Node2D" parent="."]
+script = ExtResource("1_7t1kr")
+
+[node name="Player" type="Node2D" parent="Battle"]
+position = Vector2(485, 126)
+
+[node name="Alice" type="Node2D" parent="Battle/Player"]
+position = Vector2(-314, 370)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Alice"]
+z_index = 1
+scale = Vector2(0.75, 0.78125)
+texture = ExtResource("1_q13r2")
+
+[node name="ThrowArea" type="Node2D" parent="Battle/Player/Alice"]
+script = ExtResource("4_vclho")
+
+[node name="DollProjectile" parent="Battle/Player/Alice/ThrowArea" instance=ExtResource("2_0bd56")]
+position = Vector2(417, -208)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Alice/ThrowArea"]
+
+[node name="ThrowIndicator" type="Line2D" parent="Battle/Player/Alice/ThrowArea"]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0.290196, 0.74902, 0.933333, 1)
+
+[node name="InitialClickArea" type="Area2D" parent="Battle/Player/Alice/ThrowArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Player/Alice/ThrowArea/InitialClickArea"]
+scale = Vector2(4.075, 4.075)
+shape = SubResource("CircleShape2D_0dh1d")
+debug_color = Color(0.34902, 0.560784, 0.709804, 0.345098)
+
+[node name="DragArea" type="Area2D" parent="Battle/Player/Alice/ThrowArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Player/Alice/ThrowArea/DragArea"]
+scale = Vector2(32.385, 32.385)
+shape = SubResource("CircleShape2D_d6a6i")
+
+[node name="Marisa" type="Node2D" parent="Battle/Player"]
+position = Vector2(-229, 423)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Marisa"]
+z_index = 1
+scale = Vector2(0.75, 0.78125)
+texture = ExtResource("2_o2t83")
+
+[node name="Enemy" type="Node2D" parent="Battle"]
+position = Vector2(923, 514)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Enemy"]
+scale = Vector2(0.695313, 0.695313)
+texture = ExtResource("2_bknwt")
+
+[node name="Background" type="TextureRect" parent="Battle"]
+z_index = -5
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1156.0
+offset_bottom = 646.0
+texture = ExtResource("1_wbcd5")
+expand_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Battle"]
+position = Vector2(280, 272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/StaticBody2D"]
+position = Vector2(447, 291)
+shape = SubResource("RectangleShape2D_2jip8")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 47.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 471.0
+offset_right = 590.0
+offset_bottom = 628.0
+
+[node name="AttackButton" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Attack"
+
+[connection signal="input_event" from="Battle/Player/Alice/ThrowArea/InitialClickArea" to="Battle/Player/Alice/ThrowArea" method="_on_initial_click_area_input_event"]
+[connection signal="input_event" from="Battle/Player/Alice/ThrowArea/DragArea" to="Battle/Player/Alice/ThrowArea" method="_on_drag_area_input_event"]
