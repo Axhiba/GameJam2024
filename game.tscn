@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=12 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_bknwt"]
 [ext_resource type="Texture2D" uid="uid://c85rvnn5fa10o" path="res://resources/MarisaPlaceholder.png" id="2_o2t83"]
 [ext_resource type="Script" path="res://ThrowArea.gd" id="4_vclho"]
+[ext_resource type="Script" path="res://LaserReticle.gd" id="6_gsvt3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0dh1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d6a6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
-size = Vector2(866, 20)
+size = Vector2(1158, 20)
 
 [node name="Game" type="Node"]
 
@@ -37,7 +38,8 @@ texture = ExtResource("1_q13r2")
 [node name="ThrowArea" type="Node2D" parent="Battle/Player/Alice"]
 script = ExtResource("4_vclho")
 
-[node name="DollProjectile" parent="Battle/Player/Alice/ThrowArea" instance=ExtResource("2_0bd56")]
+[node name="DollProjectile-debug" parent="Battle/Player/Alice/ThrowArea" instance=ExtResource("2_0bd56")]
+visible = false
 position = Vector2(417, -208)
 
 [node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Alice/ThrowArea"]
@@ -67,6 +69,21 @@ z_index = 1
 scale = Vector2(0.75, 0.78125)
 texture = ExtResource("2_o2t83")
 
+[node name="LaserReticle" type="Node2D" parent="Battle/Player/Marisa"]
+script = ExtResource("6_gsvt3")
+
+[node name="ReticleLocation" type="Node2D" parent="Battle/Player/Marisa/LaserReticle"]
+position = Vector2(200, 0)
+
+[node name="Marker2D" type="Marker2D" parent="Battle/Player/Marisa/LaserReticle/ReticleLocation"]
+
+[node name="ReticleSprite" type="Sprite2D" parent="Battle/Player/Marisa/LaserReticle/ReticleLocation"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_bknwt")
+
+[node name="Laser" type="Line2D" parent="Battle/Player/Marisa/LaserReticle"]
+points = PackedVector2Array(0, 0, 0, 0)
+
 [node name="Enemy" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
 
@@ -83,11 +100,11 @@ offset_bottom = 646.0
 texture = ExtResource("1_wbcd5")
 expand_mode = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Battle"]
+[node name="Floor" type="StaticBody2D" parent="Battle"]
 position = Vector2(280, 272)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/StaticBody2D"]
-position = Vector2(447, 291)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Floor"]
+position = Vector2(301, 291)
 shape = SubResource("RectangleShape2D_2jip8")
 
 [node name="UI" type="Control" parent="."]
@@ -108,5 +125,10 @@ offset_bottom = 628.0
 layout_mode = 2
 text = "Attack"
 
+[node name="LaserTestingButton" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Test Laser"
+
 [connection signal="input_event" from="Battle/Player/Alice/ThrowArea/InitialClickArea" to="Battle/Player/Alice/ThrowArea" method="_on_initial_click_area_input_event"]
 [connection signal="input_event" from="Battle/Player/Alice/ThrowArea/DragArea" to="Battle/Player/Alice/ThrowArea" method="_on_drag_area_input_event"]
+[connection signal="button_down" from="UI/VBoxContainer/LaserTestingButton" to="Battle/Player/Marisa/LaserReticle" method="_on_laser_testing_button_button_down"]
