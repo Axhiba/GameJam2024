@@ -6,8 +6,8 @@ extends RigidBody2D
 func _ready():
 	
 	
-	var velocity = Vector2(300, -100)
-	linear_velocity = velocity
+	#var velocity = Vector2(300, -100)
+	#linear_velocity = velocity
 	
 	
 	pass # Replace with function body.
