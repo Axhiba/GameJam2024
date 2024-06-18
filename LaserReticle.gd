@@ -1,5 +1,6 @@
 extends Node2D
-
+var rotation_direction = 1
+@export var rotation_speed = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,8 +9,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#TODO: rotate this node between two angles
-	pass
+	var nintyDegrees = PI/2
+	if rotation <= -nintyDegrees:
+		rotation_direction = 1
+	elif rotation >= 0:
+		rotation_direction = -1
+	rotation += rotation_direction * rotation_speed * delta
+	print(rotation)
 
 
 func _on_laser_testing_button_button_down():
