@@ -1,6 +1,12 @@
 extends Node2D
+var laserScene = preload("res://laser.tscn")
+
+
 var rotation_direction = 1
 @export var rotation_speed = 1
+@export var reticleUpperBound = -PI/2
+@export var reticleLowerBound = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,22 +15,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var nintyDegrees = PI/2
-	if rotation <= -nintyDegrees:
+	if rotation <= reticleUpperBound:
 		rotation_direction = 1
-	elif rotation >= 0:
+	elif rotation >= reticleLowerBound:
 		rotation_direction = -1
 	rotation += rotation_direction * rotation_speed * delta
-	print(rotation)
-
-
-func _on_laser_testing_button_button_down():
-	print('testing laser')
-	var laser = Line2D.new()
-	laser.add_point(position)
+	
+func addLaser():
 	var reticle = get_node("ReticleLocation")
-	laser.add_point(reticle.position * 20)
-
-
-	add_child(laser)
-	pass # Replace with function body.
+	var laser = laserScene.instantiate()
+	var reticlePosition = reticle.position
+	laser.setPointThroughReticle(rotation, reticlePosition)
+	add_sibling(laser)
