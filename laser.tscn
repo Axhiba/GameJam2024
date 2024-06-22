@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsoaah5kevxpw"]
+
+[ext_resource type="Script" path="res://laser.gd" id="1_luvvn"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7a55q"]
+
+[node name="Laser" type="Line2D"]
+scale = Vector2(1.5, 1.5)
+points = PackedVector2Array(0, 0, 0, 0)
+script = ExtResource("1_luvvn")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_7a55q")
+debug_color = Color(0.807843, 0.235294, 0.227451, 0.552941)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
