@@ -1,19 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=13 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
 [ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
-[ext_resource type="PackedScene" uid="uid://d4bqc4nkpel1f" path="res://doll_projectile.tscn" id="2_0bd56"]
+[ext_resource type="Script" path="res://Player.gd" id="2_70ia2"]
 [ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_bknwt"]
 [ext_resource type="Texture2D" uid="uid://c85rvnn5fa10o" path="res://resources/MarisaPlaceholder.png" id="2_o2t83"]
-[ext_resource type="Script" path="res://ThrowArea.gd" id="4_vclho"]
+[ext_resource type="Script" path="res://Alice.gd" id="3_wwj0q"]
+[ext_resource type="PackedScene" uid="uid://dhjsytj4k6w8f" path="res://throw_area.tscn" id="5_uluoy"]
 [ext_resource type="Script" path="res://Marisa.gd" id="5_w7sve"]
-[ext_resource type="Script" path="res://LaserReticle.gd" id="6_gsvt3"]
 [ext_resource type="PackedScene" uid="uid://dsoaah5kevxpw" path="res://laser.tscn" id="8_t2728"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0dh1d"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_d6a6i"]
+[ext_resource type="PackedScene" uid="uid://8xme17c6o5bu" path="res://laser_reticle.tscn" id="10_ebnnh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
 size = Vector2(1158, 20)
@@ -28,39 +25,19 @@ script = ExtResource("1_7t1kr")
 
 [node name="Player" type="Node2D" parent="Battle"]
 position = Vector2(485, 126)
+script = ExtResource("2_70ia2")
 
 [node name="Alice" type="Node2D" parent="Battle/Player"]
 position = Vector2(-314, 370)
+script = ExtResource("3_wwj0q")
 
 [node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Alice"]
 z_index = 1
 scale = Vector2(0.75, 0.78125)
 texture = ExtResource("1_q13r2")
 
-[node name="ThrowArea" type="Node2D" parent="Battle/Player/Alice"]
-script = ExtResource("4_vclho")
-
-[node name="DollProjectile-debug" parent="Battle/Player/Alice/ThrowArea" instance=ExtResource("2_0bd56")]
-position = Vector2(417, -208)
-
-[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Alice/ThrowArea"]
-
-[node name="ThrowIndicator" type="Line2D" parent="Battle/Player/Alice/ThrowArea"]
-points = PackedVector2Array(0, 0, 0, 0)
-default_color = Color(0.290196, 0.74902, 0.933333, 1)
-
-[node name="InitialClickArea" type="Area2D" parent="Battle/Player/Alice/ThrowArea"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Player/Alice/ThrowArea/InitialClickArea"]
-scale = Vector2(4.075, 4.075)
-shape = SubResource("CircleShape2D_0dh1d")
-debug_color = Color(0.34902, 0.560784, 0.709804, 0.345098)
-
-[node name="DragArea" type="Area2D" parent="Battle/Player/Alice/ThrowArea"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Player/Alice/ThrowArea/DragArea"]
-scale = Vector2(32.385, 32.385)
-shape = SubResource("CircleShape2D_d6a6i")
+[node name="ThrowArea-debug" parent="Battle/Player/Alice" instance=ExtResource("5_uluoy")]
+visible = false
 
 [node name="Marisa" type="Node2D" parent="Battle/Player"]
 position = Vector2(-229, 423)
@@ -75,17 +52,8 @@ texture = ExtResource("2_o2t83")
 visible = false
 default_color = Color(0.768627, 0.980392, 0.517647, 1)
 
-[node name="LaserReticle" type="Node2D" parent="Battle/Player/Marisa"]
-script = ExtResource("6_gsvt3")
-
-[node name="ReticleLocation" type="Node2D" parent="Battle/Player/Marisa/LaserReticle"]
-position = Vector2(200, 0)
-
-[node name="Marker2D" type="Marker2D" parent="Battle/Player/Marisa/LaserReticle/ReticleLocation"]
-
-[node name="ReticleSprite" type="Sprite2D" parent="Battle/Player/Marisa/LaserReticle/ReticleLocation"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_bknwt")
+[node name="LaserReticle-debug" parent="Battle/Player/Marisa" instance=ExtResource("10_ebnnh")]
+visible = false
 
 [node name="Enemy" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
@@ -124,7 +92,7 @@ offset_top = 471.0
 offset_right = 590.0
 offset_bottom = 628.0
 
-[node name="AttackButton" type="Button" parent="UI/VBoxContainer"]
+[node name="Attack2Button" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
 text = "Attack"
 
@@ -132,6 +100,5 @@ text = "Attack"
 layout_mode = 2
 text = "Test Laser"
 
-[connection signal="input_event" from="Battle/Player/Alice/ThrowArea/InitialClickArea" to="Battle/Player/Alice/ThrowArea" method="_on_initial_click_area_input_event"]
-[connection signal="input_event" from="Battle/Player/Alice/ThrowArea/DragArea" to="Battle/Player/Alice/ThrowArea" method="_on_drag_area_input_event"]
+[connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
 [connection signal="button_down" from="UI/VBoxContainer/LaserTestingButton" to="Battle/Player/Marisa" method="_on_laser_testing_button_button_down"]

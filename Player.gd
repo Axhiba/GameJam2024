@@ -1,14 +1,22 @@
-class_name DollProjectile
-extends RigidBody2D
+extends Node2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var velocity = Vector2(300, -100)
-	#linear_velocity = velocity
 	pass # Replace with function body.
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func _on_laser_hit():
-	print('laser hit')
+func startMove2():
+	var marisa = get_node("Marisa")
+	var alice = get_node("Alice")
+	marisa.startMove2()
+	alice.startMove2()
+	pass
+
+
+func _on_attack_2_button_pressed():
+	startMove2()

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://8xme17c6o5bu"]
+
+[ext_resource type="Script" path="res://LaserReticle.gd" id="1_4agjf"]
+[ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_64acp"]
+
+[node name="LaserReticle" type="Node2D"]
+script = ExtResource("1_4agjf")
+
+[node name="ReticleLocation" type="Node2D" parent="."]
+position = Vector2(200, 0)
+
+[node name="Marker2D" type="Marker2D" parent="ReticleLocation"]
+
+[node name="ReticleSprite" type="Sprite2D" parent="ReticleLocation"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_64acp")
