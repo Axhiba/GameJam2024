@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://3o04jkfa6558"]
+
+[ext_resource type="Script" path="res://CollisionShape2D.gd" id="1_d8txq"]
+[ext_resource type="Script" path="res://DollMarker.gd" id="1_dk5k8"]
+[ext_resource type="Texture2D" uid="uid://c2njpphv6ojnx" path="res://Arrow.png" id="3_m0ima"]
+[ext_resource type="Script" path="res://Sprite2D.gd" id="4_2mqn1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wul21"]
+size = Vector2(136, 133)
+
+[node name="DollMarker" type="Node2D"]
+script = ExtResource("1_dk5k8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_wul21")
+script = ExtResource("1_d8txq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -96)
+scale = Vector2(0.52, 0.479999)
+texture = ExtResource("3_m0ima")
+script = ExtResource("4_2mqn1")
+
+[connection signal="toggleActivation" from="." to="Area2D/CollisionShape2D" method="_on_doll_marker_toggle_activation"]
+[connection signal="toggleActivation" from="." to="Sprite2D" method="_on_doll_marker_toggle_activation"]
+[connection signal="input_event" from="Area2D" to="Area2D/CollisionShape2D" method="_on_area_2d_input_event"]
+[connection signal="input_event" from="Area2D" to="Sprite2D" method="_on_area_2d_input_event"]
