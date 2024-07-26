@@ -1,5 +1,7 @@
 extends Line2D
 
+var lifetime = 0
+const TIME_PERIOD = 0.2 # 200ms
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,7 +10,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	lifetime += delta
+	if lifetime > TIME_PERIOD:
+		queue_free()
 
 func setPointThroughReticle(reticleRotation, reticlePosition):
 	print('setPoints')

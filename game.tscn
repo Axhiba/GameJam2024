@@ -117,11 +117,7 @@ text = "Attack 1"
 
 [node name="Attack2Button" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
-text = "Attack 2"
-
-[node name="LaserTestingButton" type="Button" parent="UI/VBoxContainer"]
-layout_mode = 2
-text = "Test Laser"
+text = "Combo Attack 2"
 
 [connection signal="turnCompleted" from="Battle/Player/Alice/DollPlacementSpots" to="Battle/Player/Alice" method="_on_doll_placement_spots_turn_completed"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_added_doll"]
@@ -131,4 +127,3 @@ text = "Test Laser"
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
-[connection signal="button_down" from="UI/VBoxContainer/LaserTestingButton" to="Battle/Player/Marisa" method="_on_laser_testing_button_button_down"]
