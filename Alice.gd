@@ -12,6 +12,8 @@ func _process(delta):
 
 func startMove1():
 	var CollisionArray = get_node("DollPlacementSpots")
+	for M in CollisionArray.get_children():
+		M.activate()
 	pass
 
 func startMove2():
