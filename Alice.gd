@@ -30,3 +30,7 @@ func endMove2():
 	var throwarea = get_node("ThrowArea")
 	remove_child(throwarea)
 	
+
+
+func _on_doll_placement_spots_turn_completed():
+	endMove1()

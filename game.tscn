@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=15 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dhjsytj4k6w8f" path="res://throw_area.tscn" id="5_uluoy"]
 [ext_resource type="Script" path="res://Marisa.gd" id="5_w7sve"]
 [ext_resource type="PackedScene" uid="uid://3o04jkfa6558" path="res://DollMarker.tscn" id="6_3g66i"]
+[ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
 [ext_resource type="PackedScene" uid="uid://dsoaah5kevxpw" path="res://laser.tscn" id="8_t2728"]
 [ext_resource type="PackedScene" uid="uid://8xme17c6o5bu" path="res://laser_reticle.tscn" id="10_ebnnh"]
 
@@ -40,6 +41,7 @@ texture = ExtResource("1_q13r2")
 [node name="ThrowArea-debug" parent="Battle/Player/Alice" instance=ExtResource("5_uluoy")]
 
 [node name="DollPlacementSpots" type="Node2D" parent="Battle/Player/Alice"]
+script = ExtResource("6_txvtk")
 
 [node name="DollMarker" parent="Battle/Player/Alice/DollPlacementSpots" instance=ExtResource("6_3g66i")]
 position = Vector2(546, 31)
@@ -121,6 +123,12 @@ text = "Attack 2"
 layout_mode = 2
 text = "Test Laser"
 
+[connection signal="turnCompleted" from="Battle/Player/Alice/DollPlacementSpots" to="Battle/Player/Alice" method="_on_doll_placement_spots_turn_completed"]
+[connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_added_doll"]
+[connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker2" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_2_added_doll"]
+[connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker3" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_3_added_doll"]
+[connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker4" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_4_added_doll"]
+[connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
 [connection signal="button_down" from="UI/VBoxContainer/LaserTestingButton" to="Battle/Player/Marisa" method="_on_laser_testing_button_button_down"]

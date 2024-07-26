@@ -31,3 +31,4 @@ script = ExtResource("4_2mqn1")
 [connection signal="disabled" from="." to="Sprite2D" method="_on_doll_marker_disabled"]
 [connection signal="input_event" from="Area2D" to="Area2D/CollisionShape2D" method="_on_area_2d_input_event"]
 [connection signal="input_event" from="Area2D" to="Sprite2D" method="_on_area_2d_input_event"]
+[connection signal="addedDoll" from="Area2D/CollisionShape2D" to="." method="_on_collision_shape_2d_added_doll"]

@@ -4,6 +4,7 @@ var isEnabled = false
 
 signal activated
 signal disabled
+signal addedDoll
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,4 +18,9 @@ func activate():
 	activated.emit()
 	
 func disable():
+	disabled.emit()
+
+
+func _on_collision_shape_2d_added_doll():
+	addedDoll.emit()
 	disabled.emit()
