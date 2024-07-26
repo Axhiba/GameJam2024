@@ -94,11 +94,6 @@ offset_bottom = 628.0
 
 [node name="Attack2Button" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
-text = "Attack"
-
-[node name="LaserTestingButton" type="Button" parent="UI/VBoxContainer"]
-layout_mode = 2
-text = "Test Laser"
+text = "Combo Attack 2"
 
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
-[connection signal="button_down" from="UI/VBoxContainer/LaserTestingButton" to="Battle/Player/Marisa" method="_on_laser_testing_button_button_down"]

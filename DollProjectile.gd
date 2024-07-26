@@ -1,6 +1,7 @@
 class_name DollProjectile
 extends RigidBody2D
 
+var activated = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#var velocity = Vector2(300, -100)
@@ -11,4 +12,4 @@ func _process(delta):
 	pass
 
 func _on_laser_hit():
-	print('laser hit')
+	activated = true
