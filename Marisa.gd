@@ -11,6 +11,9 @@ func _process(delta):
 	pass
 	
 	
+func startMove1():
+	print_debug("I was here!")
+	pass
 
 func startMove2():
 	var reticle = reticleScene.instantiate()
