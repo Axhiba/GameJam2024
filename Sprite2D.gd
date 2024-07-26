@@ -9,7 +9,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func _on_doll_marker_activated():
+	visible = true
 
-
-func _on_doll_marker_toggle_activation():
-	visible = !visible # Replace with function body.
+func _on_doll_marker_disabled():
+	visible = false

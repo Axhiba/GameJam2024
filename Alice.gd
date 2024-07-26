@@ -16,6 +16,12 @@ func startMove1():
 		M.activate()
 	pass
 
+func endMove1():
+	var CollisionArray = get_node("DollPlacementSpots")
+	for M in CollisionArray.get_children():
+		M.disable()
+	pass
+
 func startMove2():
 	var throwarea = throwAreaScene.instantiate()
 	add_child(throwarea)

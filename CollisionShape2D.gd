@@ -28,8 +28,9 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			#doll.set_axis_velocity(-(event.position - global_position) * 10)
 			add_child(doll)
 
+func _on_doll_marker_activated():
+	isEnabled = true
 
 
-
-func _on_doll_marker_toggle_activation():
-	isEnabled = !isEnabled
+func _on_doll_marker_disabled():
+	isEnabled = false
