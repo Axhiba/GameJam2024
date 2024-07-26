@@ -10,6 +10,10 @@ func _ready():
 func _process(delta):
 	pass
 
+func startMove1():
+	var CollisionArray = get_node("DollPlacementSpots")
+	pass
+
 func startMove2():
 	var throwarea = throwAreaScene.instantiate()
 	add_child(throwarea)
