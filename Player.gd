@@ -10,6 +10,15 @@ func _ready():
 func _process(delta):
 	pass
 
+# Copy Pasta!
+func startMove1():
+	var marisa = get_node("Marisa")
+	var alice = get_node("Alice")
+	marisa.startMove1()
+	alice.startMove1()
+	pass
+
+
 func startMove2():
 	var marisa = get_node("Marisa")
 	var alice = get_node("Alice")
@@ -20,3 +29,6 @@ func startMove2():
 
 func _on_attack_2_button_pressed():
 	startMove2()
+	
+func _on_attack_1_button_pressed():
+	startMove1()

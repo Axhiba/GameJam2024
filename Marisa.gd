@@ -18,6 +18,12 @@ func _ready():
 func _process(delta):
 	if move2Started:
 		timeSinceLaser += delta
+	pass
+	
+	
+func startMove1():
+	print_debug("I was here!")
+	pass
 
 func startMove2():
 	move2Started = true
