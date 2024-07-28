@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://3d761fkix11y"]
+
+[ext_resource type="Script" path="res://ButtonPrompt.gd" id="1_0q8m1"]
+[ext_resource type="Texture2D" uid="uid://bavo3kkmim1d8" path="res://resources/Zed.png" id="2_yu22f"]
+[ext_resource type="Script" path="res://Timer.gd" id="3_4moj1"]
+
+[node name="ButtonPrompt" type="Node2D"]
+script = ExtResource("1_0q8m1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.72)
+texture = ExtResource("2_yu22f")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+script = ExtResource("3_4moj1")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

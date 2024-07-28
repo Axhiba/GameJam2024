@@ -14,15 +14,12 @@ func _process(delta):
 func startMove1():
 	var marisa = get_node("Marisa")
 	var alice = get_node("Alice")
-	marisa.startMove1()
 	alice.startMove1()
 	pass
 
 
 func startMove2():
-	var marisa = get_node("Marisa")
 	var alice = get_node("Alice")
-	marisa.startMove2()
 	alice.startMove2()
 	pass
 
@@ -32,3 +29,9 @@ func _on_attack_2_button_pressed():
 	
 func _on_attack_1_button_pressed():
 	startMove1()
+
+
+func _on_alice_end_alice_turn():
+	var marisa = get_node("Marisa")
+	marisa.startMove1()
+	pass # Replace with function body.

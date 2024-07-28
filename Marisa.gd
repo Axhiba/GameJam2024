@@ -1,5 +1,6 @@
 extends Node2D
 var reticleScene = preload("res://laser_reticle.tscn")
+var buttonPromptScene = preload("res://button_prompt.tscn")
 
 var maxLaserCount = 5
 var currentLaserCount = 0
@@ -22,8 +23,13 @@ func _process(delta):
 	
 	
 func startMove1():
-	print_debug("I was here!")
+	var input_prompt = buttonPromptScene.instantiate()
+	add_child(input_prompt)
 	pass
+
+func endMove1():
+	var input_prompt = get_node("button_prompt")
+	remove_child(input_prompt)
 
 func startMove2():
 	move2Started = true
