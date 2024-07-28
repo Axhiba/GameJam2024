@@ -4,9 +4,8 @@ extends RigidBody2D
 var activated = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var velocity = Vector2(300, -100)
-	#linear_velocity = velocity
 	pass # Replace with function body.
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4bqc4nkpel1f"]
+[gd_scene load_steps=5 format=3 uid="uid://d4bqc4nkpel1f"]
 
 [ext_resource type="Script" path="res://DollProjectile.gd" id="1_dngge"]
+[ext_resource type="Texture2D" uid="uid://clu3ds1um8wpk" path="res://resources/fire.png" id="2_13mpo"]
 [ext_resource type="Texture2D" uid="uid://dersi2auk8gr5" path="res://resources/player_battle.png" id="2_68gac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rau5"]
@@ -9,6 +10,10 @@ size = Vector2(76, 80)
 [node name="DollProjectile" type="RigidBody2D"]
 position = Vector2(588, 288)
 script = ExtResource("1_dngge")
+
+[node name="Fire" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+texture = ExtResource("2_13mpo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_68gac")
