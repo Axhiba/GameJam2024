@@ -13,6 +13,9 @@ var currentDoll: DollProjectile
 
 var timeSinceThrow = 1
 var throwCooldown = 1
+
+
+
 var dollThrowReady: bool:
 	get:
 		return thrownDolls.size() < maxDollCount && timeSinceThrow >= throwCooldown
@@ -34,6 +37,8 @@ func _on_drag_area_input_event(viewport, event, shape_idx):
 			doll.set_axis_velocity(-(event.position - global_position) * throwStrength)
 			add_child(doll)
 			thrownDolls.push_back(doll)
+			if thrownDolls.size() == 5:
+				doll.stopped_moving.connect(on_last_doll_stopped)
 	elif event is InputEventMouseMotion && isDragging:
 		#var pos = event.relative
 		var pos = event.position
@@ -46,4 +51,11 @@ func _on_initial_click_area_input_event(viewport, event, shape_idx):
 			if event.pressed:
 				isDragging = true
 
-
+func on_last_doll_stopped():
+	startDollAttacks()
+	
+func startDollAttacks():
+	for doll in thrownDolls:
+		doll.attack()
+		remove_child(doll)
+	BattleEvent.move2Ended.emit()

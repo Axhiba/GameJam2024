@@ -15,7 +15,6 @@ func _process(delta):
 		queue_free()
 
 func setPointThroughReticle(reticleRotation, reticlePosition):
-	print('setPoints')
 	rotation = reticleRotation
 	var pointPosition = reticlePosition * 20
 	add_point(position)
@@ -26,8 +25,6 @@ func setPointThroughReticle(reticleRotation, reticlePosition):
 
 
 func _on_area_2d_body_entered(body):
-	print('Entered body')
-	print(body)
 	if (body.has_method("_on_laser_hit")):
-		body._on_laser_hit()
+		body._on_laser_hit() #on hit of DollProjectile
 	pass # Replace with function body.

@@ -15,23 +15,23 @@ func startMove1():
 	var CollisionArray = get_node("DollPlacementSpots")
 	for M in CollisionArray.get_children():
 		M.activate()
-	pass
 
 func endMove1():
 	var CollisionArray = get_node("DollPlacementSpots")
 	for M in CollisionArray.get_children():
 		M.disable()
-	pass
 
 func startMove2():
 	var throwarea = throwAreaScene.instantiate()
 	add_child(throwarea)
+	#await the doll attacks?
 
+func dollAttacks():
+	var dolls = $DollProjectile
+	
 func endMove2():
 	var throwarea = get_node("ThrowArea")
 	remove_child(throwarea)
-	
-
 
 func _on_doll_placement_spots_turn_completed():
 	endMove1()
