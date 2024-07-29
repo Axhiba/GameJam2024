@@ -35,15 +35,12 @@ func endMove2():
 	remove_child(reticle)
 
 func laserAttack():
-	print('testing laser')
 	var reticle = get_node("LaserReticle")
 	reticle.addLaser()
 	timeSinceLaser = 0
 
 func _input(event):
 	if event.is_action_pressed("A"):
-		print("button pressed")
-		print(laserReady)
 		if laserReady:
 			currentLaserCount += 1
 			laserAttack()

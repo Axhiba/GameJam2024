@@ -3,9 +3,9 @@ var laserScene = preload("res://laser.tscn")
 
 
 var rotation_direction = 1
-@export var rotation_speed = 1
+@export var rotation_speed = 1.8
 @export var reticleUpperBound = -PI/2
-@export var reticleLowerBound = 0
+@export var reticleLowerBound = -PI/10
 
 
 # Called when the node enters the scene tree for the first time.
