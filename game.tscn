@@ -7,12 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_bknwt"]
 [ext_resource type="Texture2D" uid="uid://c85rvnn5fa10o" path="res://resources/MarisaPlaceholder.png" id="2_o2t83"]
 [ext_resource type="Script" path="res://Alice.gd" id="3_wwj0q"]
-[ext_resource type="PackedScene" uid="uid://dhjsytj4k6w8f" path="res://throw_area.tscn" id="5_uluoy"]
 [ext_resource type="Script" path="res://Marisa.gd" id="5_w7sve"]
 [ext_resource type="PackedScene" uid="uid://3o04jkfa6558" path="res://DollMarker.tscn" id="6_3g66i"]
 [ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
-[ext_resource type="PackedScene" uid="uid://dsoaah5kevxpw" path="res://laser.tscn" id="8_t2728"]
-[ext_resource type="PackedScene" uid="uid://8xme17c6o5bu" path="res://laser_reticle.tscn" id="10_ebnnh"]
+[ext_resource type="Script" path="res://Enemy.gd" id="9_1dim5"]
+[ext_resource type="Script" path="res://Hurtbox.gd" id="10_y5py3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vy3p6"]
+radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
 size = Vector2(1158, 20)
@@ -37,8 +39,6 @@ script = ExtResource("3_wwj0q")
 z_index = 1
 scale = Vector2(0.75, 0.78125)
 texture = ExtResource("1_q13r2")
-
-[node name="ThrowArea-debug" parent="Battle/Player/Alice" instance=ExtResource("5_uluoy")]
 
 [node name="DollPlacementSpots" type="Node2D" parent="Battle/Player/Alice"]
 script = ExtResource("6_txvtk")
@@ -67,19 +67,33 @@ z_index = 1
 scale = Vector2(0.75, 0.78125)
 texture = ExtResource("2_o2t83")
 
-[node name="Laser-debug" parent="Battle/Player/Marisa" instance=ExtResource("8_t2728")]
-visible = false
-default_color = Color(0.768627, 0.980392, 0.517647, 1)
-
-[node name="LaserReticle-debug" parent="Battle/Player/Marisa" instance=ExtResource("10_ebnnh")]
-visible = false
-
-[node name="Enemy" type="Node2D" parent="Battle"]
+[node name="EnemyList" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
 
-[node name="Sprite2D" type="Sprite2D" parent="Battle/Enemy"]
+[node name="Enemy" type="Node2D" parent="Battle/EnemyList"]
+script = ExtResource("9_1dim5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/EnemyList/Enemy"]
 scale = Vector2(0.695313, 0.695313)
 texture = ExtResource("2_bknwt")
+
+[node name="Hurtbox" type="Area2D" parent="Battle/EnemyList/Enemy"]
+script = ExtResource("10_y5py3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/EnemyList/Enemy/Hurtbox"]
+shape = SubResource("CircleShape2D_vy3p6")
+
+[node name="HP" type="Label" parent="Battle/EnemyList/Enemy"]
+offset_left = -18.985
+offset_top = 39.0
+offset_right = 21.015
+offset_bottom = 62.0
+
+[node name="Damage" type="Label" parent="Battle/EnemyList/Enemy"]
+offset_left = -0.06
+offset_top = -69.75
+offset_right = 50.145
+offset_bottom = -36.85
 
 [node name="Background" type="TextureRect" parent="Battle"]
 z_index = -5

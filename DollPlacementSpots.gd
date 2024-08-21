@@ -11,6 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print_debug(doll_count)
 	if doll_count >= 3:
 		turnCompleted.emit()
 

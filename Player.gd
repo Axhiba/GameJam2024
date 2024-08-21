@@ -1,10 +1,12 @@
 extends Node2D
 
+var marisa
+var alice
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	marisa = $"Marisa"
+	alice = $"Alice"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -12,17 +14,18 @@ func _process(delta):
 
 # Copy Pasta!
 func startMove1():
-	var marisa = get_node("Marisa")
-	var alice = get_node("Alice")
+	marisa.startMove1()
 	alice.startMove1()
-	pass
-
 
 func startMove2():
-	var alice = get_node("Alice")
+	marisa.startMove2()
 	alice.startMove2()
-	pass
+	BattleEvent.move2Ended.connect(_on_move2_End)
 
+func _on_move2_End():
+	marisa.endMove2()
+	alice.endMove2()
+	BattleEvent.move2Ended.disconnect(_on_move2_End)
 
 func _on_attack_2_button_pressed():
 	startMove2()
