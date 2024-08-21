@@ -18,6 +18,7 @@ physics_material_override = SubResource("PhysicsMaterial_ya1ki")
 script = ExtResource("1_dngge")
 
 [node name="Fire" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -51)
 texture = ExtResource("2_13mpo")
 
