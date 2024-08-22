@@ -27,3 +27,9 @@ func attack():
 	for area in areas:
 		if area.has_method("takeAttack"): #Hurtbox.takeAttack
 			area.takeAttack(3)
+
+func out_of_bounds():
+	print('out of bounds')
+	stopped_moving.emit()
+	queue_free()
+	

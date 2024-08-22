@@ -56,6 +56,7 @@ func on_last_doll_stopped():
 	
 func startDollAttacks():
 	for doll in thrownDolls:
-		doll.attack()
-		remove_child(doll)
+		if is_instance_valid(doll):
+			doll.attack()
+			remove_child(doll)
 	BattleEvent.move2Ended.emit()

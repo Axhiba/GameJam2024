@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://crrr06hc4noht"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_tr2po"]
+[ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_05q5j"]
+[ext_resource type="Script" path="res://Hurtbox.gd" id="3_gg7v4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vy3p6"]
+radius = 40.0
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_tr2po")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.695313, 0.695313)
+texture = ExtResource("2_05q5j")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_gg7v4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_vy3p6")
+
+[node name="HPLabel" type="Label" parent="."]
+offset_left = -18.985
+offset_top = 39.0
+offset_right = 21.015
+offset_bottom = 62.0
+
+[node name="DamageLabel" type="Label" parent="."]
+offset_left = -0.06
+offset_top = -69.75
+offset_right = 50.145
+offset_bottom = -36.85

@@ -1,6 +1,8 @@
 extends Node2D
 var throwAreaScene = preload("res://throw_area.tscn")
 
+@export var maxHealth = 20
+@export var currentHealth = maxHealth
 signal endAliceTurn
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +14,9 @@ func _ready():
 func _process(delta):
 	pass
 
+func updateHealthUI():
+	BattleEvent.playerHealthUpdated.emit(currentHealth, maxHealth, "Alice")
+	
 func startMove1():
 	var CollisionArray = get_node("DollPlacementSpots")
 	for M in CollisionArray.get_children():
