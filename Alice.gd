@@ -42,3 +42,7 @@ func endMove2():
 func _on_doll_placement_spots_turn_completed():
 	endMove1()
 	endAliceTurn.emit()
+
+func blowUpDolls(num):
+	var CollisionArray = get_node("DollPlacementSpots")
+	CollisionArray.blowUpDolls(num)
