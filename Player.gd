@@ -14,7 +14,7 @@ func _process(delta):
 
 # Copy Pasta!
 func startMove1():
-	marisa.startMove1()
+	#marisa.startMove1()
 	alice.startMove1()
 
 func startMove2():

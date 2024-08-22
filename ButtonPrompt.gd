@@ -1,5 +1,7 @@
 extends Node2D
 
+signal selfTerminate
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#var time = get_node("Timer") as Timer
@@ -14,4 +16,5 @@ func _process(delta):
 
 func _on_timer_timeout():
 	#free()
+	selfTerminate.emit(self)
 	pass # Replace with function body.

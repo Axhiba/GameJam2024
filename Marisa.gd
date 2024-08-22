@@ -25,6 +25,7 @@ func _process(delta):
 func startMove1():
 	var input_prompt = buttonPromptScene.instantiate()
 	add_child(input_prompt)
+	input_prompt.connect("selfTerminate", _on_button_timeout)
 	pass
 
 func endMove1():
@@ -50,3 +51,7 @@ func _input(event):
 		if laserReady:
 			currentLaserCount += 1
 			laserAttack()
+
+func _on_button_timeout(button):
+	remove_child(button)
+	button.queue_free()
