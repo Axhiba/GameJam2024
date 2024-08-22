@@ -35,3 +35,4 @@ func _on_doll_marker_activated():
 
 func _on_doll_marker_disabled():
 	isEnabled = false
+

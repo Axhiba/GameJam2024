@@ -1,4 +1,7 @@
 extends Node2D
+
+signal initiateExplosions
+
 var reticleScene = preload("res://laser_reticle.tscn")
 var buttonPromptScene = preload("res://button_prompt.tscn")
 
@@ -6,6 +9,7 @@ var maxLaserCount = 5
 var currentLaserCount = 0
 var laserCooldown = 0.7
 var timeSinceLaser = laserCooldown
+var success = 0
 var laserReady: bool:
 	get:
 		return move2Started && timeSinceLaser >= laserCooldown && currentLaserCount < maxLaserCount
@@ -23,6 +27,7 @@ func _process(delta):
 	
 	
 func startMove1():
+	success = 0
 	var input_prompt = buttonPromptScene.instantiate()
 	add_child(input_prompt)
 	input_prompt.connect("selfTerminate", _on_button_timeout)
@@ -54,4 +59,10 @@ func _input(event):
 
 func _on_button_timeout(button):
 	remove_child(button)
+	success = button.get_Successes()
 	button.queue_free()
+	if success != 0:
+		initiateExplosions.emit()
+	
+func get_Successes():
+	return success
