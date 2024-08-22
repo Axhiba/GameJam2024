@@ -140,5 +140,6 @@ text = "Combo Attack 2"
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker3" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_3_added_doll"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker4" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_4_added_doll"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
+[connection signal="initiateExplosions" from="Battle/Player/Marisa" to="Battle/Player" method="_on_marisa_initiate_explosions"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
