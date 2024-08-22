@@ -2,7 +2,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var time = get_node("Timer") as Timer
+	#var time = get_node("Timer") as Timer
 	pass # Replace with function body.
 
 
@@ -13,5 +13,5 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	free()
+	#free()
 	pass # Replace with function body.
