@@ -1,7 +1,9 @@
 extends Node2D
 
-signal initiateExplosions
+@export var maxHealth = 20
+@export var currentHealth = maxHealth
 
+signal initiateExplosions
 var reticleScene = preload("res://laser_reticle.tscn")
 var buttonPromptScene = preload("res://button_prompt.tscn")
 
@@ -18,13 +20,14 @@ var move2Started = false
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if move2Started:
 		timeSinceLaser += delta
 	pass
-	
+
+func updateHealthUI():
+	BattleEvent.playerHealthUpdated.emit(currentHealth, maxHealth, "Marisa")
 	
 func startMove1():
 	success = 0
