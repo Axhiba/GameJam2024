@@ -41,7 +41,6 @@ func _on_attack_1_button_pressed():
 	startMove1()
 
 func _on_alice_end_alice_turn():
-	var marisa = get_node("Marisa")
 	marisa.startMove1()
 	pass # Replace with function body.
 

@@ -48,6 +48,7 @@ func startMove2():
 func endMove2():
 	var reticle = get_node("LaserReticle")
 	remove_child(reticle)
+	move2Started = false
 
 func laserAttack():
 	var reticle = get_node("LaserReticle")
