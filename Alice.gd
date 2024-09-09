@@ -45,3 +45,7 @@ func _on_doll_placement_spots_turn_completed():
 func blowUpDolls(num):
 	var CollisionArray = get_node("DollPlacementSpots")
 	CollisionArray.blowDollsUp(num)
+
+func move1Cleanup():
+	var CollisionArray = get_node("DollPlacementSpots")
+	CollisionArray.cleanup()

@@ -49,3 +49,12 @@ func blowDollsUp(num):
 						_areaChild.triggerExplosion()
 						num -= 1
 
+func cleanup():
+	check = true
+	doll_count = 0
+	for _markers in self.get_children():
+		for _markerChild in _markers.get_children():
+			if _markerChild is Area2D:
+				for _areaChild in _markerChild.get_children():
+					if _areaChild is CollisionShape2D:
+						_areaChild.cleanup()

@@ -22,6 +22,9 @@ func startMove2():
 	alice.startMove2()
 	BattleEvent.move2Ended.connect(_on_move2_End)
 
+func endMove1():
+	alice.move1Cleanup()
+
 func _on_move2_End():
 	marisa.endMove2()
 	alice.endMove2()
@@ -33,13 +36,13 @@ func _on_attack_2_button_pressed():
 func _on_attack_1_button_pressed():
 	startMove1()
 
-
 func _on_alice_end_alice_turn():
 	var marisa = get_node("Marisa")
 	marisa.startMove1()
 	pass # Replace with function body.
 
-
 func _on_marisa_initiate_explosions():
 	var count = marisa.get_Successes()
 	alice.blowUpDolls(count)
+	endMove1()
+	

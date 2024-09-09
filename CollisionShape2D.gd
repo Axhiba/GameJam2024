@@ -41,3 +41,7 @@ func triggerExplosion():
 	if is_instance_valid(doll):
 		doll.attack()
 		remove_child(doll)
+		
+func cleanup():
+	if is_instance_valid(doll):
+		remove_child(doll)
