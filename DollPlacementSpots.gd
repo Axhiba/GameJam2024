@@ -19,7 +19,6 @@ func _process(delta):
 		turnCompleted.emit()
 		check = false
 
-
 func _on_doll_marker_added_doll():
 	doll_count += 1
 
