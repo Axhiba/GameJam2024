@@ -3,6 +3,8 @@ extends Node2D
 var marisa
 var alice
 
+signal attackFinished
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	marisa = $"Marisa"
@@ -24,11 +26,13 @@ func startMove2():
 
 func endMove1():
 	alice.move1Cleanup()
+	attackFinished.emit()
 
 func _on_move2_End():
 	marisa.endMove2()
 	alice.endMove2()
 	BattleEvent.move2Ended.disconnect(_on_move2_End)
+	attackFinished.emit()
 
 func _on_attack_2_button_pressed():
 	startMove2()

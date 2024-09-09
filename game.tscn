@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=15 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
 [ext_resource type="PackedScene" uid="uid://dwg4osuy6vmc5" path="res://out_of_bounds_wall.tscn" id="11_7oigr"]
 [ext_resource type="Script" path="res://PlayerHealth.gd" id="12_8jgvo"]
+[ext_resource type="Script" path="res://VBoxContainer.gd" id="13_627rv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
 size = Vector2(1158, 20)
@@ -166,6 +167,7 @@ offset_left = 373.0
 offset_top = 471.0
 offset_right = 590.0
 offset_bottom = 628.0
+script = ExtResource("13_627rv")
 
 [node name="Attack1Button" type="Button" parent="UI/VBoxContainer"]
 layout_mode = 2
@@ -175,6 +177,7 @@ text = "Attack 1"
 layout_mode = 2
 text = "Combo Attack 2"
 
+[connection signal="attackFinished" from="Battle/Player" to="UI/VBoxContainer" method="_on_player_attack_finished"]
 [connection signal="endAliceTurn" from="Battle/Player/Alice" to="Battle/Player" method="_on_alice_end_alice_turn"]
 [connection signal="turnCompleted" from="Battle/Player/Alice/DollPlacementSpots" to="Battle/Player/Alice" method="_on_doll_placement_spots_turn_completed"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_added_doll"]
@@ -184,4 +187,6 @@ text = "Combo Attack 2"
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
 [connection signal="initiateExplosions" from="Battle/Player/Marisa" to="Battle/Player" method="_on_marisa_initiate_explosions"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="UI/VBoxContainer" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="UI/VBoxContainer" method="_on_attack_2_button_pressed"]
