@@ -1,5 +1,7 @@
 extends Node2D
 
+signal death
+
 @export var health = 10
 
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +13,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if health <= 0:
+		death.emit()
+		queue_free()
 	pass
 
 func on_damage_taken(damage):
@@ -20,3 +25,6 @@ func on_damage_taken(damage):
 	$DamageLabel.text = str(damage)
 	await get_tree().create_timer(1.5).timeout
 	$DamageLabel.text = ""
+
+func attack():
+	print("Ouch!")
