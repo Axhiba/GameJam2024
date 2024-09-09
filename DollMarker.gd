@@ -20,7 +20,8 @@ func activate():
 func disable():
 	disabled.emit()
 
-
 func _on_collision_shape_2d_added_doll():
 	addedDoll.emit()
 	disabled.emit()
+
+

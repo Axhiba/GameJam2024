@@ -9,6 +9,7 @@ signal addedDoll
 
 var dollScene = preload("res://doll_projectile.tscn")
 var isEnabled = false
+var doll
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +25,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		return
 	if event is InputEventMouseButton: 
 		if event.pressed:
-			var doll = dollScene.instantiate()
+			doll = dollScene.instantiate()
 			doll.position = position
 			#doll.set_axis_velocity(-(event.position - global_position) * 10)
 			add_child(doll)
@@ -36,3 +37,7 @@ func _on_doll_marker_activated():
 func _on_doll_marker_disabled():
 	isEnabled = false
 
+func triggerExplosion():
+	if is_instance_valid(doll):
+		doll.attack()
+		remove_child(doll)

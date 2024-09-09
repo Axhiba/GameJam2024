@@ -1,17 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=15 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
 [ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
 [ext_resource type="Script" path="res://Player.gd" id="2_70ia2"]
+[ext_resource type="Texture2D" uid="uid://cs6r15to1m8ic" path="res://resources/opponent_battle.png" id="2_bknwt"]
 [ext_resource type="Texture2D" uid="uid://c85rvnn5fa10o" path="res://resources/MarisaPlaceholder.png" id="2_o2t83"]
 [ext_resource type="Script" path="res://Alice.gd" id="3_wwj0q"]
 [ext_resource type="Script" path="res://Marisa.gd" id="5_w7sve"]
 [ext_resource type="PackedScene" uid="uid://3o04jkfa6558" path="res://DollMarker.tscn" id="6_3g66i"]
 [ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
-[ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
-[ext_resource type="PackedScene" uid="uid://dwg4osuy6vmc5" path="res://out_of_bounds_wall.tscn" id="11_7oigr"]
-[ext_resource type="Script" path="res://PlayerHealth.gd" id="12_8jgvo"]
+[ext_resource type="Script" path="res://Enemy.gd" id="9_1dim5"]
+[ext_resource type="Script" path="res://Hurtbox.gd" id="10_y5py3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vy3p6"]
+radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
 size = Vector2(1158, 20)
@@ -67,7 +70,30 @@ texture = ExtResource("2_o2t83")
 [node name="EnemyList" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
 
-[node name="Enemy" parent="Battle/EnemyList" instance=ExtResource("9_82wtv")]
+[node name="Enemy" type="Node2D" parent="Battle/EnemyList"]
+script = ExtResource("9_1dim5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle/EnemyList/Enemy"]
+scale = Vector2(0.695313, 0.695313)
+texture = ExtResource("2_bknwt")
+
+[node name="Hurtbox" type="Area2D" parent="Battle/EnemyList/Enemy"]
+script = ExtResource("10_y5py3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/EnemyList/Enemy/Hurtbox"]
+shape = SubResource("CircleShape2D_vy3p6")
+
+[node name="HP" type="Label" parent="Battle/EnemyList/Enemy"]
+offset_left = -18.985
+offset_top = 39.0
+offset_right = 21.015
+offset_bottom = 62.0
+
+[node name="Damage" type="Label" parent="Battle/EnemyList/Enemy"]
+offset_left = -0.06
+offset_top = -69.75
+offset_right = 50.145
+offset_bottom = -36.85
 
 [node name="Background" type="TextureRect" parent="Battle"]
 z_index = -5
@@ -85,80 +111,12 @@ position = Vector2(280, 272)
 position = Vector2(301, 291)
 shape = SubResource("RectangleShape2D_2jip8")
 
-[node name="OutOfBoundsWall2" parent="Battle" instance=ExtResource("11_7oigr")]
-
-[node name="OutOfBoundsWall" parent="Battle" instance=ExtResource("11_7oigr")]
-position = Vector2(1208, 2)
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 7.0
 offset_right = 40.0
 offset_bottom = 47.0
-
-[node name="GridContainer" type="GridContainer" parent="UI"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 14.0
-offset_right = 1117.0
-offset_bottom = 125.0
-columns = 4
-
-[node name="PlayerHealth" type="VBoxContainer" parent="UI/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("12_8jgvo")
-
-[node name="AliceHealth" type="ColorRect" parent="UI/GridContainer/PlayerHealth"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.501961, 0.807843, 0.843137, 1)
-
-[node name="Label" type="Label" parent="UI/GridContainer/PlayerHealth/AliceHealth"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "10/10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UI/GridContainer/PlayerHealth/AliceHealth"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 8.0
-offset_right = 79.0
-offset_bottom = 48.0
-
-[node name="MarisaHealth" type="ColorRect" parent="UI/GridContainer/PlayerHealth"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.12549, 0.12549, 0.12549, 1)
-
-[node name="Label" type="Label" parent="UI/GridContainer/PlayerHealth/MarisaHealth"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "10/10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UI/GridContainer/PlayerHealth/MarisaHealth"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 8.0
-offset_right = 80.0
-offset_bottom = 48.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 0

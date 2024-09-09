@@ -9,7 +9,6 @@ signal endAliceTurn
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -45,4 +44,4 @@ func _on_doll_placement_spots_turn_completed():
 
 func blowUpDolls(num):
 	var CollisionArray = get_node("DollPlacementSpots")
-	CollisionArray.blowUpDolls(num)
+	CollisionArray.blowDollsUp(num)

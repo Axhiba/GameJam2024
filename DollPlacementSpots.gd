@@ -38,17 +38,14 @@ func _on_doll_marker_4_added_doll():
 func _on_doll_marker_5_added_doll():
 	doll_count += 1
 
-func blowUpDolls(num):
-	print("Are we here?")
-	#for _i in self.get_children():
-	#	print("Got children")
-	#	for _j in _i.get_children():
-	#		print("Got sub children")
-	#		if _j is Sprite2D:
-	#			print("Woah, actually something useful")
-	#			_i.attack()
-	#			num -= 1
-	#			if num == 0:
-	#				return
-		
-		
+func blowDollsUp(num):
+	for _markers in self.get_children():
+		if num == 0:
+			return
+		for _markerChild in _markers.get_children():
+			if _markerChild is Area2D:
+				for _areaChild in _markerChild.get_children():
+					if _areaChild is CollisionShape2D:
+						_areaChild.triggerExplosion()
+						num -= 1
+
