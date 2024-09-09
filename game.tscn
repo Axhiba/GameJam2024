@@ -180,7 +180,6 @@ layout_mode = 2
 text = "Combo Attack 2"
 
 [connection signal="attackFinished" from="Battle/Player" to="Battle" method="_on_player_attack_finished"]
-[connection signal="attackFinished" from="Battle/Player" to="UI/VBoxContainer" method="_on_player_attack_finished"]
 [connection signal="endAliceTurn" from="Battle/Player/Alice" to="Battle/Player" method="_on_alice_end_alice_turn"]
 [connection signal="turnCompleted" from="Battle/Player/Alice/DollPlacementSpots" to="Battle/Player/Alice" method="_on_doll_placement_spots_turn_completed"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_added_doll"]
