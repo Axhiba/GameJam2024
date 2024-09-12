@@ -14,7 +14,7 @@ var currentDoll: DollProjectile
 var timeSinceThrow = 1
 var throwCooldown = 1
 
-
+signal dollThrown
 
 var dollThrowReady: bool:
 	get:
@@ -37,6 +37,7 @@ func _on_drag_area_input_event(viewport, event, shape_idx):
 			doll.set_axis_velocity(-(event.position - global_position) * throwStrength)
 			add_child(doll)
 			thrownDolls.push_back(doll)
+			dollThrown.emit()
 			if thrownDolls.size() == 5:
 				doll.stopped_moving.connect(on_last_doll_stopped)
 	elif event is InputEventMouseMotion && isDragging:
