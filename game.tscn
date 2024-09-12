@@ -208,6 +208,7 @@ text = "[font_size=22][center]Battle text here[/center]"
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
 [connection signal="initiateExplosions" from="Battle/Player/Marisa" to="Battle/Player" method="_on_marisa_initiate_explosions"]
 [connection signal="attackFinished" from="Battle/EnemyList" to="UI/VBoxContainer" method="_on_enemy_list_attack_finished"]
+[connection signal="battleWon" from="Battle/EnemyList" to="UI/VBoxContainer" method="_on_enemy_list_battle_won"]
 [connection signal="battleWon" from="Battle/EnemyList" to="UI/BattleText" method="_on_enemy_list_battle_won"]
 [connection signal="death" from="Battle/EnemyList/Enemy" to="Battle/EnemyList" method="_on_enemy_death"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]

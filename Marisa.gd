@@ -65,8 +65,7 @@ func _on_button_timeout(button):
 	success = button.get_Successes()
 	remove_child(button)
 	button.queue_free()
-	if success != 0:
-		initiateExplosions.emit()
+	initiateExplosions.emit()
 	
 func get_Successes():
 	return success
