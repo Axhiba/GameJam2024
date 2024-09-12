@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=15 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://3o04jkfa6558" path="res://DollMarker.tscn" id="6_3g66i"]
 [ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
 [ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
-[ext_resource type="Script" path="res://EnemyList.gd" id="9_m1rhp"]
 [ext_resource type="PackedScene" uid="uid://dwg4osuy6vmc5" path="res://out_of_bounds_wall.tscn" id="11_7oigr"]
 [ext_resource type="Script" path="res://PlayerHealth.gd" id="12_8jgvo"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="13_627rv"]
@@ -60,6 +59,7 @@ position = Vector2(812, -175)
 [node name="Marisa" type="Node2D" parent="Battle/Player"]
 position = Vector2(-229, 423)
 script = ExtResource("5_w7sve")
+maxHealth = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Marisa"]
 z_index = 1
@@ -68,7 +68,6 @@ texture = ExtResource("2_o2t83")
 
 [node name="EnemyList" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
-script = ExtResource("9_m1rhp")
 
 [node name="Enemy" parent="Battle/EnemyList" instance=ExtResource("9_82wtv")]
 
@@ -179,7 +178,7 @@ text = "Attack 1"
 layout_mode = 2
 text = "Combo Attack 2"
 
-[connection signal="attackFinished" from="Battle/Player" to="Battle" method="_on_player_attack_finished"]
+[connection signal="attackFinished" from="Battle/Player" to="UI/VBoxContainer" method="_on_player_attack_finished"]
 [connection signal="endAliceTurn" from="Battle/Player/Alice" to="Battle/Player" method="_on_alice_end_alice_turn"]
 [connection signal="turnCompleted" from="Battle/Player/Alice/DollPlacementSpots" to="Battle/Player/Alice" method="_on_doll_placement_spots_turn_completed"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_added_doll"]
@@ -188,8 +187,6 @@ text = "Combo Attack 2"
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker4" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_4_added_doll"]
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
 [connection signal="initiateExplosions" from="Battle/Player/Marisa" to="Battle/Player" method="_on_marisa_initiate_explosions"]
-[connection signal="attackFinished" from="Battle/EnemyList" to="UI/VBoxContainer" method="_on_enemy_list_attack_finished"]
-[connection signal="death" from="Battle/EnemyList/Enemy" to="Battle/EnemyList" method="_on_enemy_death"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="UI/VBoxContainer" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]

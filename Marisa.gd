@@ -48,6 +48,7 @@ func startMove2():
 func endMove2():
 	var reticle = get_node("LaserReticle")
 	remove_child(reticle)
+	move2Started = false
 
 func laserAttack():
 	var reticle = get_node("LaserReticle")
@@ -61,8 +62,8 @@ func _input(event):
 			laserAttack()
 
 func _on_button_timeout(button):
-	remove_child(button)
 	success = button.get_Successes()
+	remove_child(button)
 	button.queue_free()
 	if success != 0:
 		initiateExplosions.emit()

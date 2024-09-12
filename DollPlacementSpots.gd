@@ -19,7 +19,6 @@ func _process(delta):
 		turnCompleted.emit()
 		check = false
 
-
 func _on_doll_marker_added_doll():
 	doll_count += 1
 
@@ -38,17 +37,21 @@ func _on_doll_marker_4_added_doll():
 func _on_doll_marker_5_added_doll():
 	doll_count += 1
 
-func blowUpDolls(num):
-	print("Are we here?")
-	#for _i in self.get_children():
-	#	print("Got children")
-	#	for _j in _i.get_children():
-	#		print("Got sub children")
-	#		if _j is Sprite2D:
-	#			print("Woah, actually something useful")
-	#			_i.attack()
-	#			num -= 1
-	#			if num == 0:
-	#				return
-		
-		
+func blowDollsUp(num):
+	for _markers in self.get_children():
+		if num == 0:
+			return
+		var area2D = _markers.get_node("Area2D")
+		var colSha2D = area2D.get_node("CollisionShape2D")
+		if colSha2D is CollisionShape2D:
+			colSha2D.triggerExplosion()
+			num -= 1
+
+func cleanup():
+	check = true
+	doll_count = 0
+	for _markers in self.get_children():
+		var area2D = _markers.get_node("Area2D")
+		var colSha2D = area2D.get_node("CollisionShape2D")
+		if colSha2D is CollisionShape2D:
+			colSha2D.cleanup()
