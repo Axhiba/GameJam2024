@@ -1,6 +1,7 @@
 extends Node2D
 
 signal attackFinished
+signal battleWon
 
 var numberOfEnemies = 0
 
@@ -12,6 +13,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if numberOfEnemies <= 0:
+		battleWon.emit("All enemies defeated...")
 	pass
 
 func enemyTurn():
