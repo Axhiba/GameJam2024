@@ -29,14 +29,19 @@ func endMove1():
 func startMove2():
 	var throwarea = throwAreaScene.instantiate()
 	add_child(throwarea)
+	throwarea.dollThrown.connect(_on_doll_thrown)
 	#await the doll attacks?
 
+func _on_doll_thrown():
+	$AnimatedSprite2D.play("throw") #todo: use animationPlayer instead
+	
 func dollAttacks():
 	var dolls = $DollProjectile
 	
 func endMove2():
 	var throwarea = get_node("ThrowArea")
 	remove_child(throwarea)
+	$AnimatedSprite2D.play("idle")
 
 func _on_doll_placement_spots_turn_completed():
 	endMove1()
@@ -49,3 +54,4 @@ func blowUpDolls(num):
 func move1Cleanup():
 	var CollisionArray = get_node("DollPlacementSpots")
 	CollisionArray.cleanup()
+
