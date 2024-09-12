@@ -1,225 +1,20 @@
-[gd_scene load_steps=45 format=3 uid="uid://cs7uptugn7j02"]
-
+[gd_scene load_steps=17 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
+[ext_resource type="Texture2D" uid="uid://bwadfw0a5e8ea" path="res://resources/AlicePlaceholder.png" id="1_q13r2"]
 [ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
 [ext_resource type="Script" path="res://Player.gd" id="2_70ia2"]
+[ext_resource type="Texture2D" uid="uid://c85rvnn5fa10o" path="res://resources/MarisaPlaceholder.png" id="2_o2t83"]
 [ext_resource type="Script" path="res://Alice.gd" id="3_wwj0q"]
 [ext_resource type="Script" path="res://Marisa.gd" id="5_w7sve"]
-[ext_resource type="PackedScene" path="res://DollMarker.tscn" id="6_3g66i"]
+[ext_resource type="PackedScene" uid="uid://3o04jkfa6558" path="res://DollMarker.tscn" id="6_3g66i"]
 [ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
-[ext_resource type="Texture2D" uid="uid://c2cm57un8chou" path="res://resources/AliceTurnDance.png" id="7_88nwn"]
-[ext_resource type="Texture2D" uid="uid://dj2hckssaqud8" path="res://resources/AliceThrow.png" id="8_yiqfv"]
 [ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
 [ext_resource type="Script" path="res://EnemyList.gd" id="9_m1rhp"]
 [ext_resource type="PackedScene" uid="uid://dwg4osuy6vmc5" path="res://out_of_bounds_wall.tscn" id="11_7oigr"]
-[ext_resource type="Texture2D" uid="uid://fdybtsh1og7x" path="res://resources/MarisaDance.png" id="11_f1e2p"]
 [ext_resource type="Script" path="res://PlayerHealth.gd" id="12_8jgvo"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="13_627rv"]
 [ext_resource type="Script" path="res://BattleText.gd" id="15_1sr4x"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ofx0"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e5csg"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(200, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yhh1y"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(400, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynp1n"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(0, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0ph6"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(200, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijoca"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(400, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wme46"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(0, 400, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_csjfv"]
-atlas = ExtResource("7_88nwn")
-region = Rect2(200, 400, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8t8xb"]
-atlas = ExtResource("8_yiqfv")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_15ro3"]
-atlas = ExtResource("8_yiqfv")
-region = Rect2(200, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fm5gi"]
-atlas = ExtResource("8_yiqfv")
-region = Rect2(400, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mnvfb"]
-atlas = ExtResource("8_yiqfv")
-region = Rect2(600, 0, 200, 200)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xwkfl"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ofx0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e5csg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yhh1y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ynp1n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k0ph6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ijoca")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wme46")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_csjfv")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 9.0
-}, {
-"frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_8t8xb")
-}, {
-"duration": 1.6,
-"texture": SubResource("AtlasTexture_15ro3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fm5gi")
-}, {
-"duration": 3.7,
-"texture": SubResource("AtlasTexture_mnvfb")
-}],
-"loop": false,
-"name": &"throw",
-"speed": 17.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bfjc8"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8wcwb"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(200, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ioi6"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(400, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6o3k"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(600, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fddju"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(0, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8snny"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(200, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h8c0i"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(400, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_df4cx"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(600, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78l7w"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(0, 400, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ohd6o"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(200, 400, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8a36f"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(400, 400, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_smvel"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(600, 400, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jpkbm"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(0, 600, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ige76"]
-atlas = ExtResource("11_f1e2p")
-region = Rect2(200, 600, 200, 200)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gowdn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bfjc8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8wcwb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ioi6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6o3k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fddju")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8snny")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h8c0i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_df4cx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_78l7w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ohd6o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8a36f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smvel")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jpkbm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ige76")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 14.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jip8"]
 size = Vector2(1158, 20)
@@ -240,6 +35,11 @@ script = ExtResource("2_70ia2")
 position = Vector2(-314, 370)
 script = ExtResource("3_wwj0q")
 
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Alice"]
+z_index = 1
+scale = Vector2(0.75, 0.78125)
+texture = ExtResource("1_q13r2")
+
 [node name="DollPlacementSpots" type="Node2D" parent="Battle/Player/Alice"]
 script = ExtResource("6_txvtk")
 
@@ -258,22 +58,14 @@ position = Vector2(615, -179)
 [node name="DollMarker5" parent="Battle/Player/Alice/DollPlacementSpots" instance=ExtResource("6_3g66i")]
 position = Vector2(812, -175)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Battle/Player/Alice"]
-scale = Vector2(0.75, 0.75)
-sprite_frames = SubResource("SpriteFrames_xwkfl")
-animation = &"throw"
-autoplay = "idle"
-
 [node name="Marisa" type="Node2D" parent="Battle/Player"]
 position = Vector2(-229, 423)
 script = ExtResource("5_w7sve")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Battle/Player/Marisa"]
-scale = Vector2(0.75, 0.75)
-sprite_frames = SubResource("SpriteFrames_gowdn")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.398291
+[node name="Sprite2D" type="Sprite2D" parent="Battle/Player/Marisa"]
+z_index = 1
+scale = Vector2(0.75, 0.78125)
+texture = ExtResource("2_o2t83")
 
 [node name="EnemyList" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
@@ -416,7 +208,6 @@ text = "[font_size=22][center]Battle text here[/center]"
 [connection signal="addedDoll" from="Battle/Player/Alice/DollPlacementSpots/DollMarker5" to="Battle/Player/Alice/DollPlacementSpots" method="_on_doll_marker_5_added_doll"]
 [connection signal="initiateExplosions" from="Battle/Player/Marisa" to="Battle/Player" method="_on_marisa_initiate_explosions"]
 [connection signal="attackFinished" from="Battle/EnemyList" to="UI/VBoxContainer" method="_on_enemy_list_attack_finished"]
-[connection signal="battleWon" from="Battle/EnemyList" to="UI/VBoxContainer" method="_on_enemy_list_battle_won"]
 [connection signal="battleWon" from="Battle/EnemyList" to="UI/BattleText" method="_on_enemy_list_battle_won"]
 [connection signal="death" from="Battle/EnemyList/Enemy" to="Battle/EnemyList" method="_on_enemy_death"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]

@@ -23,3 +23,8 @@ func _on_attack_2_button_pressed():
 func _on_enemy_list_attack_finished():
 	self.visible = true
 	pass # Replace with function body.
+
+
+func _on_enemy_list_battle_won():
+	self.visible = false
+	pass # Replace with function body.
