@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://DollProjectile.gd" id="1_dngge"]
 [ext_resource type="Texture2D" uid="uid://clu3ds1um8wpk" path="res://resources/fire.png" id="2_13mpo"]
-[ext_resource type="Texture2D" uid="uid://dersi2auk8gr5" path="res://resources/player_battle.png" id="2_68gac"]
+[ext_resource type="Texture2D" uid="uid://c0pggvp3s35m0" path="res://resources/shanghaigrab.png" id="3_q7ejj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ya1ki"]
 friction = 100.0
@@ -24,7 +24,7 @@ texture = ExtResource("2_13mpo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.255, 0.255)
-texture = ExtResource("2_68gac")
+texture = ExtResource("3_q7ejj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1rau5")
