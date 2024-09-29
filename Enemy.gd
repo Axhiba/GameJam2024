@@ -3,16 +3,20 @@ extends Node2D
 signal death
 
 @export var health = 10
-
+var attacking = false
+var attackPathScene = preload("res://BakebakeAttackPath1.tscn")
+var currentPathFollow
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var hurtbox = $Hurtbox
+	var hurtbox = $Path2D/PathFollow2D/Hurtbox
+	currentPathFollow = $Path2D/PathFollow2D
 	$HPLabel.text = str(health)
 	hurtbox.damage_taken.connect(on_damage_taken)
-	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	currentPathFollow.progress += 3
 	if health <= 0:
 		death.emit()
 		queue_free()
@@ -28,3 +32,16 @@ func on_damage_taken(damage):
 
 func attack():
 	print("Ouch!")
+	#var players = get_tree().get_nodes_in_group("Players")
+	#var attackPath = attackPathScene.instantiate()
+	#var attackCurve = attackPathScene.get_curve()
+	#
+	#var pathToBeginningOfAttack = Curve2D.new()
+	#pathToBeginningOfAttack.addPoint(global_position)
+	#
+	#var attackPoints = attackCurve.get_baked_points()
+	#for point in attackPoints:
+		#pathToBeginningOfAttack.addPoint(point)
+	#$Path2D.set_curve(pathToBeginningOfAttack)
+	
+	
