@@ -1,5 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cs7uptugn7j02"]
-
+[gd_scene load_steps=47 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
@@ -9,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://DollMarker.tscn" id="6_3g66i"]
 [ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
 [ext_resource type="Texture2D" uid="uid://c2cm57un8chou" path="res://resources/AliceTurnDance.png" id="7_88nwn"]
+[ext_resource type="PackedScene" uid="uid://0h6jnk8kld4w" path="res://BakebakeAttackPath1.tscn" id="8_7fjo4"]
 [ext_resource type="Texture2D" uid="uid://dj2hckssaqud8" path="res://resources/AliceThrow.png" id="8_yiqfv"]
 [ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
 [ext_resource type="Script" path="res://EnemyList.gd" id="9_m1rhp"]
@@ -236,8 +236,8 @@ script = ExtResource("1_7t1kr")
 position = Vector2(485, 126)
 script = ExtResource("2_70ia2")
 
-[node name="Alice" type="Node2D" parent="Battle/Player"]
-position = Vector2(-314, 370)
+[node name="Alice" type="Node2D" parent="Battle/Player" groups=["Players"]]
+position = Vector2(-314.215, 359.95)
 script = ExtResource("3_wwj0q")
 
 [node name="DollPlacementSpots" type="Node2D" parent="Battle/Player/Alice"]
@@ -264,7 +264,9 @@ sprite_frames = SubResource("SpriteFrames_xwkfl")
 animation = &"throw"
 autoplay = "idle"
 
-[node name="Marisa" type="Node2D" parent="Battle/Player"]
+[node name="BakeBakeAttackPath1" parent="Battle/Player/Alice" instance=ExtResource("8_7fjo4")]
+
+[node name="Marisa" type="Node2D" parent="Battle/Player" groups=["Players"]]
 position = Vector2(-229, 423)
 script = ExtResource("5_w7sve")
 
@@ -280,6 +282,9 @@ position = Vector2(923, 514)
 script = ExtResource("9_m1rhp")
 
 [node name="Enemy" parent="Battle/EnemyList" instance=ExtResource("9_82wtv")]
+
+[node name="Enemy2" parent="Battle/EnemyList" instance=ExtResource("9_82wtv")]
+position = Vector2(-152.455, 0)
 
 [node name="Background" type="TextureRect" parent="Battle"]
 z_index = -5
@@ -419,6 +424,7 @@ text = "[font_size=22][center]Battle text here[/center]"
 [connection signal="battleWon" from="Battle/EnemyList" to="UI/VBoxContainer" method="_on_enemy_list_battle_won"]
 [connection signal="battleWon" from="Battle/EnemyList" to="UI/BattleText" method="_on_enemy_list_battle_won"]
 [connection signal="death" from="Battle/EnemyList/Enemy" to="Battle/EnemyList" method="_on_enemy_death"]
+[connection signal="death" from="Battle/EnemyList/Enemy2" to="Battle/EnemyList" method="_on_enemy_death"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="Battle/Player" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack1Button" to="UI/VBoxContainer" method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Attack2Button" to="Battle/Player" method="_on_attack_2_button_pressed"]
