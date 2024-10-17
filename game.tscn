@@ -264,8 +264,6 @@ sprite_frames = SubResource("SpriteFrames_xwkfl")
 animation = &"throw"
 autoplay = "idle"
 
-[node name="BakeBakeAttackPath1" parent="Battle/Player/Alice" instance=ExtResource("8_7fjo4")]
-
 [node name="Marisa" type="Node2D" parent="Battle/Player" groups=["Players"]]
 position = Vector2(-229, 423)
 script = ExtResource("5_w7sve")
@@ -280,6 +278,9 @@ frame_progress = 0.398291
 [node name="EnemyList" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
 script = ExtResource("9_m1rhp")
+
+[node name="BakeBakeAttackPath1" parent="Battle/EnemyList" instance=ExtResource("8_7fjo4")]
+position = Vector2(-752.215, -28.05)
 
 [node name="Enemy" parent="Battle/EnemyList" instance=ExtResource("9_82wtv")]
 

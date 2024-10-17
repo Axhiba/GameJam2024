@@ -1,10 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://crrr06hc4noht"]
+[gd_scene load_steps=19 format=3 uid="uid://crrr06hc4noht"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_tr2po"]
 [ext_resource type="Texture2D" uid="uid://ctf2lr7dgmupk" path="res://BakeBake.png" id="2_8lfkm"]
 [ext_resource type="Script" path="res://Hurtbox.gd" id="3_gg7v4"]
-
-[sub_resource type="Curve2D" id="Curve2D_2fn6a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l25vt"]
 atlas = ExtResource("2_8lfkm")
@@ -111,12 +109,7 @@ radius = 40.0
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_tr2po")
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_2fn6a")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-8.25, -3.25)
 scale = Vector2(0.34625, 0.34625)
 sprite_frames = SubResource("SpriteFrames_bmvc0")
@@ -125,12 +118,11 @@ autoplay = "BakeBake"
 frame_progress = 0.0428406
 flip_h = true
 
-[node name="Hurtbox" type="Area2D" parent="Path2D/PathFollow2D"]
+[node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(-9.53674e-07, -2.38419e-07)
-scale = Vector2(1, 1)
 script = ExtResource("3_gg7v4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_vy3p6")
 
 [node name="HPLabel" type="Label" parent="."]
