@@ -37,6 +37,7 @@ func updateHealthUI():
 func startMove1():
 	success = 0
 	var input_prompt = buttonPromptScene.instantiate()
+	$AnimatedSprite2D.play("broom")
 	add_child(input_prompt)
 	input_prompt.connect("selfTerminate", _on_button_timeout)
 
@@ -70,6 +71,7 @@ func _on_button_timeout(button):
 	remove_child(button)
 	button.queue_free()
 	initiateExplosions.emit()
+	$AnimatedSprite2D.play("idle")
 	
 func get_Successes():
 	return success

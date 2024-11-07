@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Hurtbox.gd" id="8_5uhjr"]
 [ext_resource type="PackedScene" uid="uid://0h6jnk8kld4w" path="res://BakebakeAttackPath1.tscn" id="8_7fjo4"]
 [ext_resource type="Texture2D" uid="uid://dj2hckssaqud8" path="res://resources/AliceThrow.png" id="8_yiqfv"]
+[ext_resource type="Texture2D" uid="uid://cjpieskmy27i6" path="res://MarisaBroom.png" id="9_0xyl6"]
 [ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
 [ext_resource type="Script" path="res://EnemyList.gd" id="9_m1rhp"]
 [ext_resource type="PackedScene" uid="uid://dwg4osuy6vmc5" path="res://out_of_bounds_wall.tscn" id="11_7oigr"]
@@ -179,6 +180,14 @@ region = Rect2(200, 600, 200, 200)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_0xyl6")
+}],
+"loop": true,
+"name": &"broom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bfjc8")
 }, {
 "duration": 1.0,
@@ -282,9 +291,8 @@ script = ExtResource("5_w7sve")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Battle/Player/Marisa"]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_gowdn")
-animation = &"idle"
+animation = &"broom"
 autoplay = "idle"
-frame_progress = 0.398291
 
 [node name="Hurtbox" type="Area2D" parent="Battle/Player/Marisa"]
 position = Vector2(-9.53674e-07, -2.38419e-07)
