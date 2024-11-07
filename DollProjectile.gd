@@ -25,7 +25,7 @@ func attack():
 	var attackRadiusArea = get_node("AttackRadius")
 	var areas = attackRadiusArea.get_overlapping_areas()
 	for area in areas:
-		if area.has_method("takeAttack"): #Hurtbox.takeAttack
+		if area.has_method("takeAttack") && area.type == "enemy": #Hurtbox.takeAttack
 			area.takeAttack(3)
 
 func out_of_bounds():

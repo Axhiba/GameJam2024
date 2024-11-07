@@ -6,12 +6,13 @@ signal death
 var attacking = false
 var attackPathScene = preload("res://BakebakeAttackPath1.tscn")
 var currentPathFollow
+var hitbox
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var hurtbox = $Hurtbox
 	$HPLabel.text = str(health)
 	hurtbox.damage_taken.connect(on_damage_taken)
-
+	hitbox = $Hitbox
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,8 +20,6 @@ func _process(delta):
 	if health <= 0:
 		death.emit()
 		queue_free()
-	
-	
 
 func on_damage_taken(damage):
 	health -= damage

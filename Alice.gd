@@ -7,7 +7,13 @@ signal endAliceTurn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	updateHealthUI()
+	$Hurtbox.damage_taken.connect(on_damage_taken)
+
+func on_damage_taken(damage):
+	print('alice damaged by',damage)
+	currentHealth -= damage
+	updateHealthUI()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

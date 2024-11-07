@@ -29,22 +29,25 @@ func _process(delta):
 	#var destination = to_global(attackPoints[0])
 	var destination = attackPath.to_global(attackCurve.get_point_position(0))
 	#var destination = attackCurve.get_point_position(0)
-	print(destination)
 	
 	#enemy.position += enemy.position.direction_to(destination) * SPEED * delta
-	if currentEnemy.global_position.distance_to(destination) <= 2:
-		moveTowardPath = false
-		attacking = true
-		currentEnemy.reparent(attackPathFollow, true)
+	
 	
 	if moveTowardPath:
+		#move enemy to beginning of attack path
 		currentEnemy.global_position += currentEnemy.global_position.direction_to(destination) * SPEED * delta
+		if currentEnemy.global_position.distance_to(destination) <= 2:
+			moveTowardPath = false
+			attacking = true
+			currentEnemy.reparent(attackPathFollow, true) #place enemy on pathfollow node
 	elif attacking:
 		attackPathFollow.progress_ratio  += delta * 1.0
+		currentEnemy.hitbox.attackActive = true
 		if attackPathFollow.progress_ratio  >= 0.95:
 			attacking = false
 			currentEnemy.reparent(get_owner(),true)
 			currentEnemy.global_position = originalPosition
+			attackPathFollow.progress_ratio = 0
 			attackFinished.emit()
 		
 		

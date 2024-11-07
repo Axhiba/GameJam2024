@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://crrr06hc4noht"]
+[gd_scene load_steps=20 format=3 uid="uid://crrr06hc4noht"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_tr2po"]
 [ext_resource type="Texture2D" uid="uid://ctf2lr7dgmupk" path="res://BakeBake.png" id="2_8lfkm"]
 [ext_resource type="Script" path="res://Hurtbox.gd" id="3_gg7v4"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="4_wnqv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l25vt"]
 atlas = ExtResource("2_8lfkm")
@@ -104,7 +105,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vy3p6"]
-radius = 40.0
+radius = 50.84
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_tr2po")
@@ -121,9 +122,18 @@ flip_h = true
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(-9.53674e-07, -2.38419e-07)
 script = ExtResource("3_gg7v4")
+type = "enemy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_vy3p6")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-1.90735e-06, -4.76838e-07)
+script = ExtResource("4_wnqv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_vy3p6")
+debug_color = Color(0.301961, 0.6, 0.521569, 0.419608)
 
 [node name="HPLabel" type="Label" parent="."]
 offset_left = -18.985
@@ -136,3 +146,5 @@ offset_left = -0.06
 offset_top = -69.75
 offset_right = 50.145
 offset_bottom = -36.85
+
+[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]
