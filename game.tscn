@@ -1,13 +1,14 @@
-[gd_scene load_steps=47 format=3 uid="uid://cs7uptugn7j02"]
+[gd_scene load_steps=49 format=3 uid="uid://cs7uptugn7j02"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_7t1kr"]
 [ext_resource type="Texture2D" uid="uid://d3y0uvpbrjm7m" path="res://resources/background.png" id="1_wbcd5"]
 [ext_resource type="Script" path="res://Player.gd" id="2_70ia2"]
 [ext_resource type="Script" path="res://Alice.gd" id="3_wwj0q"]
 [ext_resource type="Script" path="res://Marisa.gd" id="5_w7sve"]
-[ext_resource type="PackedScene" path="res://DollMarker.tscn" id="6_3g66i"]
+[ext_resource type="PackedScene" uid="uid://3o04jkfa6558" path="res://DollMarker.tscn" id="6_3g66i"]
 [ext_resource type="Script" path="res://DollPlacementSpots.gd" id="6_txvtk"]
 [ext_resource type="Texture2D" uid="uid://c2cm57un8chou" path="res://resources/AliceTurnDance.png" id="7_88nwn"]
+[ext_resource type="Script" path="res://Hurtbox.gd" id="8_5uhjr"]
 [ext_resource type="PackedScene" uid="uid://0h6jnk8kld4w" path="res://BakebakeAttackPath1.tscn" id="8_7fjo4"]
 [ext_resource type="Texture2D" uid="uid://dj2hckssaqud8" path="res://resources/AliceThrow.png" id="8_yiqfv"]
 [ext_resource type="PackedScene" uid="uid://crrr06hc4noht" path="res://enemy.tscn" id="9_82wtv"]
@@ -114,6 +115,9 @@ animations = [{
 "name": &"throw",
 "speed": 17.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_piejn"]
+radius = 77.93
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bfjc8"]
 atlas = ExtResource("11_f1e2p")
@@ -264,6 +268,13 @@ sprite_frames = SubResource("SpriteFrames_xwkfl")
 animation = &"throw"
 autoplay = "idle"
 
+[node name="Hurtbox" type="Area2D" parent="Battle/Player/Alice"]
+position = Vector2(-9.53674e-07, -2.38419e-07)
+script = ExtResource("8_5uhjr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Player/Alice/Hurtbox"]
+shape = SubResource("CircleShape2D_piejn")
+
 [node name="Marisa" type="Node2D" parent="Battle/Player" groups=["Players"]]
 position = Vector2(-229, 423)
 script = ExtResource("5_w7sve")
@@ -274,6 +285,13 @@ sprite_frames = SubResource("SpriteFrames_gowdn")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.398291
+
+[node name="Hurtbox" type="Area2D" parent="Battle/Player/Marisa"]
+position = Vector2(-9.53674e-07, -2.38419e-07)
+script = ExtResource("8_5uhjr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Player/Marisa/Hurtbox"]
+shape = SubResource("CircleShape2D_piejn")
 
 [node name="EnemyList" type="Node2D" parent="Battle"]
 position = Vector2(923, 514)
@@ -343,7 +361,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "10/10"
+text = "20/20"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -367,7 +385,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "10/10"
+text = "20/20"
 horizontal_alignment = 1
 vertical_alignment = 1
 

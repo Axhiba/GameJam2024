@@ -18,13 +18,18 @@ var laserReady: bool:
 var move2Started = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	updateHealthUI()
+	$Hurtbox.damage_taken.connect(on_damage_taken)
 
+func on_damage_taken(damage):
+	print('marisa damaged by',damage)
+	currentHealth -= damage
+	updateHealthUI()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if move2Started:
 		timeSinceLaser += delta
-	pass
 
 func updateHealthUI():
 	BattleEvent.playerHealthUpdated.emit(currentHealth, maxHealth, "Marisa")
@@ -34,7 +39,6 @@ func startMove1():
 	var input_prompt = buttonPromptScene.instantiate()
 	add_child(input_prompt)
 	input_prompt.connect("selfTerminate", _on_button_timeout)
-	pass
 
 func endMove1():
 	var input_prompt = get_node("button_prompt")
